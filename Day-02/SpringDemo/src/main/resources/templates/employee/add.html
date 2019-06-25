@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>Employee Index</title>
+	</head>
+	<body>
+		<h1>Employee Index</h1>
+		<form th:action="@{~/employee/simpan}" method="POST">
+			<label>ID</label><br/>
+			<input type="text" name="id"/> <br/><br>
+			
+			<label>Nama</label><br/>
+			<input type="text" name="nama"/> <br/><br>
+			
+			<label>Alamat</label><br/>
+			<input type="text" name="alamat"/> <br/><br>
+			
+			<label>Tempat Lahir</label><br/>
+			<input type="text" name="tptLahir"/> <br/><br>
+			
+			<label>Tanggal Lahir</label><br/>
+			<input type="date" name="tglLahir"/> <br/><br>
+			
+			<button type="submit">Submit</button>
+			<button type="reset">Reset</button>
+		</form>
+	</body>
+</html>
