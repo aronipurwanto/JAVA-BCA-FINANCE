@@ -19,10 +19,10 @@
 					<td th:text="${job.id}"></td>
 					<td th:text="${job.code}"></td>
 					<td th:text="${job.name}"></td>
-					<td th:text="${job.description]}"></td>
+					<td th:text="${job.description}"></td>
 					<td>
-						<a th:href="@{~/jobtitle/edit/{id}(id=${job.id})}" >Edit</a> |
-						<a th:href="@{~/jobtitle/edit/{id}(id=${job.id})}" >Hapus</a>
+						<a th:href="@{~/job-title/edit/{id}(id=${job.id})}" >Edit</a> |
+						<a th:href="@{~/job-title/hapus/{id}(id=${job.id})}" >Hapus</a>
 					</td>
 				</tr>
 			</tbody>

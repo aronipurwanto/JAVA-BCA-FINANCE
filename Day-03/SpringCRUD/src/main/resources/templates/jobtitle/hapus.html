@@ -1,10 +1,10 @@
 <html>
 	<head>
-		<title>Create Job Title</title>
+		<title>Hapus Job Title</title>
 	</head>
 	<body>
-		<h1>Create Job Title</h1>
-		<form action="" method="POST">
+		<h1>Hapus Job Title</h1>
+		<form th:action="@{~/job-title/remove}" method="POST">
 			<label>ID</label> <br/>
 			<label th:text="${item.id}"></label> <br/><br/>
 			
@@ -17,7 +17,10 @@
 			<label>Description</label> <br/>
 			<label th:text="${item.description}"></label> <br/><br/>
 			
-			<a th:href="@{~/job-title/index}">Back To Index</a>
+			<h3>Anda yakin akan menghapus data ini?</h3>
+			<input type="hidden" name="id" th:value="${item.id}"/>
+			<button type="submit">Hapus</button> 
+			<a th:href="@{~/job-title/index}">Batal</a>
 		</form>
 	</body>
 </html>

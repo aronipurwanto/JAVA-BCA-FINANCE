@@ -7,5 +7,4 @@ import com.bcaf.crud.model.JobTitleModel;
 
 @Repository
 public interface JobtitleRepo extends JpaRepository<JobTitleModel, Integer> {
-
 }

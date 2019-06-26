@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,6 +49,47 @@ public class JobtitleController {
 		this.repo.save(jobtitle);
 		// mengirim object item ke view, data item dari jobtitle
 		view.addObject("item", jobtitle);
+		return view;
+	}
+	
+	@GetMapping(value = "edit/{id}")
+	public ModelAndView edit(@PathVariable("id") Integer id) {
+		// mempersiapan view yang akan digunakan di request ini
+		ModelAndView view  = new ModelAndView("jobtitle/edit");
+		// ambil data jobtitle berdasarkan id, kemudian disimpan ke object item
+		JobTitleModel item = this.repo.findById(id).orElse(null);
+		// object item dikirim ke view melalui object view
+		view.addObject("item", item);
+		return view;
+	}
+	
+	@PostMapping(value="update")
+	public ModelAndView update(@ModelAttribute JobTitleModel jobtitle) {
+		ModelAndView view = new ModelAndView("jobtitle/update");
+		// perintah simpan ke database
+		this.repo.save(jobtitle);
+		// mengirim object item ke view, data item dari jobtitle
+		view.addObject("item", jobtitle);
+		return view;
+	}
+	
+	@GetMapping(value = "hapus/{id}")
+	public ModelAndView hapus(@PathVariable("id") Integer id) {
+		// mempersiapan view yang akan digunakan di request ini
+		ModelAndView view  = new ModelAndView("jobtitle/hapus");
+		// ambil data jobtitle berdasarkan id, kemudian disimpan ke object item
+		JobTitleModel item = this.repo.findById(id).orElse(null);
+		// object item dikirim ke view melalui object view
+		view.addObject("item", item);
+		return view;
+	}
+	
+	@PostMapping(value="remove")
+	public ModelAndView remove(@ModelAttribute JobTitleModel jobtitle) {
+		// perintah simpan ke database
+		this.repo.delete(jobtitle);
+		// mengirim object item ke view, data item dari jobtitle
+		ModelAndView view = new ModelAndView("redirect:/job-title/index");
 		return view;
 	}
 }
