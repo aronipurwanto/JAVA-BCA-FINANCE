@@ -6,7 +6,7 @@
 	<head>
 		<meta charset="utf-8">
 	  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	  	<title>AdminLTE 2 | Data Tables</title>
+	  	<title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Min Project</title>
 	  	<!-- Tell the browser to be responsive to screen width -->
 	  	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	  	<!-- Bootstrap 3.3.7 -->
@@ -31,7 +31,6 @@
 	</head>
 	<body class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
-		
 			<header th:replace="fragments/header :: header_app"></header>
 			
 			<aside th:replace="fragments/sidebar :: sidebar_app"></aside>
@@ -39,19 +38,19 @@
 			<!-- Content Wrapper. Contains page content -->
 		  	<div class="content-wrapper">
 		  		<!-- Content Header (Page header) -->
-			    <section class="content-header">
-			      <h1>
-			        Dashboard
-			        <small>Control panel</small>
-			      </h1>
-			      <ol class="breadcrumb">
-			        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			        <li class="active">Dashboard</li>
-			      </ol>
+		  		<section class="content-header">
+			    	<h1>
+			        	Dashboard
+			        	<small>Control panel</small>
+			      	</h1>
+			      	<ol class="breadcrumb">
+			        	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			        	<li class="active">Dashboard</li>
+			      	</ol>
 			    </section>
 			    
-			    <!-- Main content -->
-			    <section class="content" layout:fragment="content">    </section>
+		    	<!-- Main content -->
+		    	<section class="content" layout:fragment="content">    </section>
 		  	</div>
 		  	
 		  	<footer th:replace="fragments/footer :: footer_app"></footer>
@@ -61,6 +60,43 @@
 			<!-- Add the sidebar's background. This div must be placed
 			       immediately after the control sidebar -->
 			<div class="control-sidebar-bg"></div>
-		  </div>	
+		  </div>
+		  
+		 <div layout:fragment="content-modal"></div>
+	
+		<div layout:fragment="child-modal"></div>	
 	</body>
+	
+	<!-- jQuery 3 -->
+	<script th:src="@{~/jquery/dist/jquery.min.js}"></script>
+	<!-- jQuery UI 1.11.4 -->
+	<script th:src="@{~/jquery-ui/jquery-ui.min.js}"></script>
+	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+	<script>
+	  $.widget.bridge('uibutton', $.ui.button);
+	</script>
+	<!-- Bootstrap 3.3.7 -->
+	<script th:src="@{~/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<!-- DataTables -->
+	<script th:src="@{~/datatables.net/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{~/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+	<!-- Sparkline -->
+	<script th:src="@{~/jquery-sparkline/dist/jquery.sparkline.min.js}"></script>
+	<!-- daterangepicker -->
+	<script th:src="@{~/moment/min/moment.min.js}"></script>
+	<script th:src="@{~/bootstrap-daterangepicker/daterangepicker.js}"></script>
+	<!-- datepicker -->
+	<script th:src="@{~/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
+	<!-- Select2 -->
+	<script th:src="@{~/bower_components/select2/dist/js/select2.full.min.js}"></script>
+	<!-- Slimscroll -->
+	<script th:src="@{~/jquery-slimscroll/jquery.slimscroll.min.js}"></script>
+	<!-- iCheck 1.0.1 -->
+	<script th:src="@{~/iCheck/icheck.min.js}"></script>
+	<!-- FastClick -->
+	<script th:src="@{~/fastclick/lib/fastclick.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{~dist/js/adminlte.min.js}"></script>
+	
+	<script layout:fragment="script-js" type="text/javascript"></script>
 </html>
