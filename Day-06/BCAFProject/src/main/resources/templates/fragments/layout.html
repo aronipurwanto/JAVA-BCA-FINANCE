@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="utf-8">
+	  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  	<title>AdminLTE 2 | Data Tables</title>
+	  	<!-- Tell the browser to be responsive to screen width -->
+	  	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	  	<!-- Bootstrap 3.3.7 -->
+	  	<link rel="stylesheet" th:href="@{~/bootstrap/dist/css/bootstrap.min.css}">
+	  	<!-- Font Awesome -->
+	  	<link rel="stylesheet" th:href="@{~/font-awesome/css/font-awesome.min.css}">
+	  	<!-- Ionicons -->
+	  	<link rel="stylesheet" th:href="@{~/Ionicons/css/ionicons.min.css}">
+	  	<!-- Date Picker -->
+  		<link rel="stylesheet" th:href="@{~/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css}">
+  		<!-- Daterange picker -->
+  		<link rel="stylesheet" th:href="@{~/bootstrap-daterangepicker/daterangepicker.css}">
+	  	<!-- DataTables -->
+	  	<link rel="stylesheet" th:href="@{~/datatables.net-bs/css/dataTables.bootstrap.min.css}">
+	  	<!-- Select2 -->
+  		<link rel="stylesheet" th:href="@{~/select2/dist/css/select2.min.css}">
+	  	<!-- Theme style -->
+	  	<link rel="stylesheet" th:href="@{~/dist/css/AdminLTE.min.css}">
+	  	<!-- AdminLTE Skins. Choose a skin from the css/skins
+	       folder instead of downloading all of them to reduce the load. -->
+	  	<link rel="stylesheet" th:href="@{~/dist/css/skins/_all-skins.min.css}">
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
+		
+			<header th:replace="fragments/header :: header_app"></header>
+			
+			<aside th:replace="fragments/sidebar :: sidebar_app"></aside>
+			
+			<!-- Content Wrapper. Contains page content -->
+		  	<div class="content-wrapper">
+		  		<!-- Content Header (Page header) -->
+			    <section class="content-header">
+			      <h1>
+			        Dashboard
+			        <small>Control panel</small>
+			      </h1>
+			      <ol class="breadcrumb">
+			        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			        <li class="active">Dashboard</li>
+			      </ol>
+			    </section>
+			    
+			    <!-- Main content -->
+			    <section class="content" layout:fragment="content">    </section>
+		  	</div>
+		  	
+		  	<footer th:replace="fragments/footer :: footer_app"></footer>
+		  	
+		  	<aside th:replace="fragments/control-sidebar :: control_sidebar_app"></aside>
+		  	<!-- /.control-sidebar -->
+			<!-- Add the sidebar's background. This div must be placed
+			       immediately after the control sidebar -->
+			<div class="control-sidebar-bg"></div>
+		  </div>	
+	</body>
+</html>
