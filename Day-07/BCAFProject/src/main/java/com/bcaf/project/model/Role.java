@@ -32,6 +32,7 @@ public class Role {
 	@ManyToMany(mappedBy = "listRole")
 	private List<User> listUser = new ArrayList<User>();
 	
+	// default constructor
 	public Role() {
 	}
 	
