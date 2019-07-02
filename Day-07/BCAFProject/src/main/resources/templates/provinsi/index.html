@@ -7,10 +7,15 @@
 	<body>
 		<div data-layout-fragment="content">
 			<div class="box box-info">
-				<div class="box-header">
+				<div class="box-header with-border">
 					<h3 class="box-title">List Provinsi</h3>
+					<div class="box-tools">
+						<button type="button" class="btn btn-success btn-sm" id="btn-add">
+							<i class="fa fa-plus"></i>
+						</button>
+					</div>
 				</div>
-				<div class="box-body table-responsive no-padding">
+				<div class="box-body table-responsive no-padding" id="list-provinsi">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -42,13 +47,70 @@
 		</div>
 		
 		<div class="modal fade" id="main-modal" data-layout-fragment="content-modal">
-			<div class="modal-dialog modal-lg" style="width:75%;">
+			<div class="modal-dialog">
 				<div class="modal-content" id="main-modal-content">
+				
 				</div>
 			</div>
 		</div>
-		<script data-layout-fragment="script-js"> 
 		
+		<script data-layout-fragment="script-js"> 
+			$("#btn-add").click(function(){
+				$.ajax({
+					url:'/provinsi/create',
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
+			});
+			
+			$("#main-modal").on('submit','form', function(){
+				var vUrl = $(this).attr('action');
+				var vData = $(this).serialize();
+				
+				$.ajax({
+					url:vUrl,
+					type:'post',
+					data:vData,
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('hide');
+						// panggil method load data
+						loadData();
+					}
+				});
+				
+				return false;
+			});
+			
+			function loadData(){
+				$.ajax({
+					url:'/provinsi/list',
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#list-provinsi').html(hasil);
+					}
+				});
+			}
+			
+			$("#list-provinsi").on('click','.btn-update', function(){
+				var vId = $(this).val();
+				
+				$.ajax({
+					url:'/provinsi/edit/'+ vId,
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
+			});
 		</script>
 	</body>
 </html>

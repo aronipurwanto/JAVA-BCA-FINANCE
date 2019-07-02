@@ -24,6 +24,14 @@ public class UserRole {
 	
 	@Column(name="role_id", nullable = false)
 	private Long roleId;
+	
+	public UserRole() {
+	}
+	
+	public UserRole(Long userId, Long roleId ) {
+		this.userId = userId;
+		this.roleId = roleId;
+	}
 
 	public Long getId() {
 		return id;

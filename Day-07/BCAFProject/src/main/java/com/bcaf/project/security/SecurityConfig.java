@@ -8,8 +8,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -27,6 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.withUser("admin1").password(passwordEncoder().encode("admin123")).roles("ADMIN")
 			.and()
 			.withUser("manager1").password(passwordEncoder().encode("manager123")).roles("MANAGER");
+			
+		
+		//auth.authenticationProvider(authenticationProvider());
 	}
 	
 	@Override
@@ -36,12 +41,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/home").hasRole("USER")
 		.antMatchers("/admin","/provinsi/*").hasRole("ADMIN")
 		.antMatchers("/manager").hasRole("MANAGER")
-		.antMatchers("/login*").permitAll()
+		.antMatchers("/login").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.httpBasic();
+		/*
+		.formLogin().loginProcessingUrl("/login")
+		.loginPage("/login").permitAll()
+		.defaultSuccessUrl("/home")
+		.and()
+		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+		.and()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(2)
+		.expiredUrl("/session-expired");
+		
+		/*
+		.and()
+		.httpBasic()
+		*/
 	}
 	
+	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider daoAuthProvider = new DaoAuthenticationProvider();
 		daoAuthProvider.setPasswordEncoder(passwordEncoder());

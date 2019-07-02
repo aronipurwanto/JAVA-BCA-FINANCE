@@ -7,5 +7,6 @@ import com.bcaf.project.model.Role;
 
 @Repository
 public interface RoleRepo extends JpaRepository<Role, Long> {
-
+	public Role findByName(String name);
+	public Role findByCode(String code);
 }

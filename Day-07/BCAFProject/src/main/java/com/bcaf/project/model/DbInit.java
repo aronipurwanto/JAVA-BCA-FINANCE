@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.bcaf.project.repository.RoleRepo;
 import com.bcaf.project.repository.UserRepo;
+import com.bcaf.project.repository.UserRoleRepo;
 
 @Service
 public class DbInit implements CommandLineRunner {
@@ -21,6 +22,9 @@ public class DbInit implements CommandLineRunner {
 	
 	@Autowired
 	private RoleRepo roleRepo;
+	
+	@Autowired
+	private UserRoleRepo userRoleRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -47,6 +51,30 @@ public class DbInit implements CommandLineRunner {
 			// simpan role ke databse
 			this.roleRepo.saveAll(listRole);
 		}
+		
+		if(this.userRoleRepo.findAll().size()==0) {
+			List<UserRole> listUserRole = new ArrayList<UserRole>();
+			// mencari user dulu
+			User user1 = this.userRepo.findByUsername("user");
+			Role role1 = this.roleRepo.findByCode("ROLE_USER");
+			listUserRole.add(new UserRole(user1.getId(), role1.getId()));
+			
+			User user2 = this.userRepo.findByUsername("staff");
+			Role role2 = this.roleRepo.findByCode("ROLE_STAFF");
+			listUserRole.add(new UserRole(user2.getId(), role2.getId()));
+			
+			User user3 = this.userRepo.findByUsername("manager");
+			Role role3 = this.roleRepo.findByCode("ROLE_MANAGER");
+			listUserRole.add(new UserRole(user3.getId(), role3.getId()));
+			
+			User user4 = this.userRepo.findByUsername("admin");
+			Role role4 = this.roleRepo.findByCode("ROLE_ADMIN");
+			listUserRole.add(new UserRole(user4.getId(), role4.getId()));
+			
+			this.userRoleRepo.saveAll(listUserRole);
+			
+		}
+		
 		
 	}
 
