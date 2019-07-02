@@ -14,11 +14,11 @@
 				<td th:text="${item.code}"></td>
 				<td th:text="${item.name}"></td>
 				<td>
-					<button type="button" class="btn btn-xs btn-warning btn-update" value="${item.id}">
+					<button type="button" class="btn btn-xs btn-warning btn-update" th:value="${item.id}">
 						<i class="fa fa-edit"></i>
 					</button>
 					
-					<button type="button" class="btn btn-xs btn-danger btn-delete" value="${item.id}">
+					<button type="button" class="btn btn-xs btn-danger btn-delete" th:value="${item.id}">
 						<i class="fa fa-trash"></i>
 					</button>
 				</td>
