@@ -20,7 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserPrincipalService userService;
 	
 	@Override
-	public void configure(final AuthenticationManagerBuilder auth) throws Exception{
+	public void configure(final AuthenticationManagerBuilder auth){
+		/*
 		auth.inMemoryAuthentication()
 			.withUser("user1").password(passwordEncoder().encode("user123")).roles("USER")
 			.and()
@@ -30,8 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.withUser("manager1").password(passwordEncoder().encode("manager123")).roles("MANAGER");
 			
-		
-		//auth.authenticationProvider(authenticationProvider());
+		*/
+		auth.authenticationProvider(authenticationProvider());
 	}
 	
 	@Override
@@ -42,9 +43,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/admin","/provinsi/*").hasRole("ADMIN")
 		.antMatchers("/manager").hasRole("MANAGER")
 		.antMatchers("/login").permitAll()
-		.anyRequest().authenticated()
 		.and()
-		.httpBasic();
+		.formLogin()
+		.loginPage("/login").permitAll()
+		.loginProcessingUrl("/login")
+		.defaultSuccessUrl("/home");
 		/*
 		.formLogin().loginProcessingUrl("/login")
 		.loginPage("/login").permitAll()
