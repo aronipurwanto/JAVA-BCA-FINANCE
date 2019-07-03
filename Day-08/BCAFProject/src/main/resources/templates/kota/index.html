@@ -112,6 +112,18 @@
 						$("#main-modal").modal('show');
 					}
 				});
+			}).on('click','.btn-delete', function(){
+				var vId = $(this).val();
+				
+				$.ajax({
+					url:'/kota/hapus/'+ vId,
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
 			});
 		</script>
 	</body>

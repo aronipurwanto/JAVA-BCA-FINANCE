@@ -64,6 +64,9 @@ public class KotaController {
 		ModelAndView view = new ModelAndView("kota/_form");
 		Kota  item = this.repo.findById(id).orElse(null);
 		view.addObject("kota", item);
+		
+		List<Provinsi> listProp = this.propRepo.findAll();
+		view.addObject("listProp", listProp);
 		return view;
 	}
 	
@@ -82,6 +85,15 @@ public class KotaController {
 		ModelAndView view = new ModelAndView("kota/_hapus");
 		Kota  item = this.repo.findById(id).orElse(null);
 		view.addObject("kota", item);
+		return view;
+	}
+	
+	@PostMapping(value="remove")
+	public ModelAndView remove(@ModelAttribute Kota kota) {
+		// proses hapus
+		this.repo.delete(kota);
+		ModelAndView view = new ModelAndView("kota/_form");
+		view.addObject("kota", new Kota());
 		return view;
 	}
 }

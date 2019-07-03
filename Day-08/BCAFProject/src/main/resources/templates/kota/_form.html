@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <form th:action="@{~/kota/save}" method="POST" th:object="${kota}">
-	<div class="box box-info">
+	<div class="box box-info box-solid">
 		<div class="box-header with-border">
 			<h3 class="box-title">Form Kota</h3>
 		</div>
@@ -10,7 +10,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12">Kode Kota</label>
 					<div class="col-md-8 col-sm-8 col-xs-12">
 						<input type="text" th:field="*{code}" class="form-control" />
-						<!-- Hideen ID -->
+						<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
 						<input type="hidden" th:field="*{id}" class="form-control" />
 					</div>
 				</div>
