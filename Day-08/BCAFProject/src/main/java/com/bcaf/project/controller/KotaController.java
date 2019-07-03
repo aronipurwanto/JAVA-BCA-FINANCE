@@ -47,13 +47,13 @@ public class KotaController {
 	}
 	
 	@PostMapping(value="save")
-	public ModelAndView save(@ModelAttribute Kota Kota, BindingResult result) {
+	public ModelAndView save(@ModelAttribute Kota kota, BindingResult result) {
 		ModelAndView view = new ModelAndView("kota/_form");
 		// jika ada error
 		if(result.hasErrors()) {
-			view.addObject("kota", Kota);
+			view.addObject("kota", kota);
 		}else {
-			this.repo.save(Kota);
+			this.repo.save(kota);
 			view.addObject("kota", new Kota());
 		}
 		return view;

@@ -8,20 +8,21 @@
 		<div data-layout-fragment="content">
 			<div class="box box-info">
 				<div class="box-header with-border">
-					<h3 class="box-title">List Provinsi</h3>
+					<h3 class="box-title">List Kota</h3>
 					<div class="box-tools">
 						<button type="button" class="btn btn-success btn-sm" id="btn-add">
 							<i class="fa fa-plus"></i>
 						</button>
 					</div>
 				</div>
-				<div class="box-body table-responsive no-padding" id="list-provinsi">
+				<div class="box-body table-responsive no-padding" id="list-kota">
 					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Kode Provinsi</th>
-								<th>Nama Provinsi</th>
+								<th>Kode Kota</th>
+								<th>Nama Kota</th>
+								<th>Provinsi</th>
 								<th>#</th>
 							</tr>
 						</thead>
@@ -30,6 +31,7 @@
 								<td th:text="${item.id}"></td>
 								<td th:text="${item.code}"></td>
 								<td th:text="${item.name}"></td>
+								<td th:text="${item.provinsi.name}"></td>
 								<td>
 									<button type="button" class="btn btn-xs btn-warning btn-update" th:value="${item.id}">
 										<i class="fa fa-edit"></i>
@@ -57,7 +59,7 @@
 		<script data-layout-fragment="script-js"> 
 			$("#btn-add").click(function(){
 				$.ajax({
-					url:'/provinsi/create',
+					url:'/kota/create',
 					type:'get',
 					dataType:'html',
 					success:function(hasil){
@@ -89,20 +91,20 @@
 			
 			function loadData(){
 				$.ajax({
-					url:'/provinsi/list',
+					url:'/kota/list',
 					type:'get',
 					dataType:'html',
 					success:function(hasil){
-						$('#list-provinsi').html(hasil);
+						$('#list-kota').html(hasil);
 					}
 				});
 			}
 			
-			$("#list-provinsi").on('click','.btn-update', function(){
+			$("#list-kota").on('click','.btn-update', function(){
 				var vId = $(this).val();
 				
 				$.ajax({
-					url:'/provinsi/edit/'+ vId,
+					url:'/kota/edit/'+ vId,
 					type:'get',
 					dataType:'html',
 					success:function(hasil){
