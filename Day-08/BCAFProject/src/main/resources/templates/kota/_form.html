@@ -1,13 +1,13 @@
-<html lang="en">
-<form th:action="@{~/provinsi/save}" method="POST" th:object="${provinsi}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<form th:action="@{~/Kota/save}" method="POST" th:object="${Kota}">
 	<div class="box box-info">
 		<div class="box-header with-border">
-			<h3 class="box-title">Form Provinsi</h3>
+			<h3 class="box-title">Form Kota</h3>
 		</div>
 		<div class="box-body">
 			<div class="form-horizontal">
 				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12">Kode Provinsi</label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">Kode Kota</label>
 					<div class="col-md-8 col-sm-8 col-xs-12">
 						<input type="text" th:field="*{code}" class="form-control" />
 						<!-- Hideen ID -->
@@ -16,9 +16,19 @@
 				</div>
 				
 				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Provinsi</label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Kota</label>
 					<div class="col-md-8 col-sm-8 col-xs-12">
 						<input type="text" th:field="*{name}" class="form-control" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">Provinsi</label>
+					<div class="col-md-8 col-sm-8 col-xs-12">
+						<select th:field="*{provinsiId}" class="form-control">
+							<option value="">= Pilih Provinsi =</option>
+							<option th:each="item : ${listProp}" th:value="${item.id}" th:text="${item.name}"></option>
+						</select>
 					</div>
 				</div>
 			</div>

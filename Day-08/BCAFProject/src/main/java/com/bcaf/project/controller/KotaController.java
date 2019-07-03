@@ -13,13 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bcaf.project.model.Kota;
+import com.bcaf.project.model.Provinsi;
 import com.bcaf.project.repository.KotaRepo;
+import com.bcaf.project.repository.ProvinsiRepo;
 
 @Controller
 @RequestMapping(value="/kota/")
 public class KotaController {
 	@Autowired
 	private KotaRepo repo;
+	
+	@Autowired
+	private ProvinsiRepo propRepo;
 	
 	@GetMapping(value="index")
 	public ModelAndView index() {
@@ -35,6 +40,9 @@ public class KotaController {
 	public ModelAndView create() {
 		ModelAndView view = new ModelAndView("kota/_form");
 		view.addObject("kota", new Kota());
+		
+		List<Provinsi> listProp = this.propRepo.findAll();
+		view.addObject("listProp", listProp);
 		return view;
 	}
 	
