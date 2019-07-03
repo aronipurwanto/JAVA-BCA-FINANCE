@@ -1,5 +1,5 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<form th:action="@{~/kota/remove}" method="POST" th:object="${kota}">
+<form th:action="@{~/provinsi/remove}" method="POST" th:object="${provinsi}">
 	<div class="box box-danger box-solid">
 		<div class="box-header with-border">
 			<h3 class="box-title">Yakin akan menghapus data ini?</h3>
@@ -10,21 +10,17 @@
 			<table class="table">
 				<tr>
 					<th>ID<th>
-					<td th:text="${kota.id}"></td>
+					<td th:text="${provinsi.id}"></td>
 				</tr>
 				
 				<tr>
 					<th>Kode<th>
-					<td th:text="${kota.code}"></td>
+					<td th:text="${provinsi.code}"></td>
 				</tr>
 				
 				<tr>
-					<th>Nama Kota<th>
-					<td th:text="${kota.name}"></td>
-				</tr>
-				<tr>
-					<th>Provinsi<th>
-					<td th:text="${kota.provinsi.name}"></td>
+					<th>Nama<th>
+					<td th:text="${provinsi.name}"></td>
 				</tr>				
 			</table>
 		</div>
