@@ -10,4 +10,6 @@ import com.bcaf.project.model.Kota;
 @Repository
 public interface KotaRepo extends JpaRepository<Kota, Long> {
 	public List<Kota> findByProvinsiId(Long provinsiId);
+	public Kota findByCode(String code);
+	public Kota findByName(String name);
 }
