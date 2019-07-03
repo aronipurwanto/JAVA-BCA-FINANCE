@@ -34,7 +34,7 @@ public class KotaController {
 	@GetMapping(value="create")
 	public ModelAndView create() {
 		ModelAndView view = new ModelAndView("kota/_form");
-		view.addObject("Kota", new Kota());
+		view.addObject("kota", new Kota());
 		return view;
 	}
 	
@@ -43,10 +43,10 @@ public class KotaController {
 		ModelAndView view = new ModelAndView("kota/_form");
 		// jika ada error
 		if(result.hasErrors()) {
-			view.addObject("Kota", Kota);
+			view.addObject("kota", Kota);
 		}else {
 			this.repo.save(Kota);
-			view.addObject("Kota", new Kota());
+			view.addObject("kota", new Kota());
 		}
 		return view;
 	}
@@ -55,7 +55,7 @@ public class KotaController {
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		ModelAndView view = new ModelAndView("kota/_form");
 		Kota  item = this.repo.findById(id).orElse(null);
-		view.addObject("Kota", item);
+		view.addObject("kota", item);
 		return view;
 	}
 	
@@ -66,6 +66,14 @@ public class KotaController {
 		List<Kota> list = this.repo.findAll();
 		view.addObject("list", list);
 		
+		return view;
+	}
+	
+	@GetMapping(value="hapus/{id}")
+	public ModelAndView hapus(@PathVariable("id") Long id) {
+		ModelAndView view = new ModelAndView("kota/_hapus");
+		Kota  item = this.repo.findById(id).orElse(null);
+		view.addObject("kota", item);
 		return view;
 	}
 }
