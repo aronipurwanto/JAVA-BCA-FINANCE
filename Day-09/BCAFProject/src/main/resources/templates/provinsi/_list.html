@@ -1,0 +1,28 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Kode Provinsi</th>
+				<th>Nama Provinsi</th>
+				<th>#</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item : ${list}">
+				<td th:text="${item.id}"></td>
+				<td th:text="${item.code}"></td>
+				<td th:text="${item.name}"></td>
+				<td>
+					<button type="button" class="btn btn-xs btn-warning btn-update" th:value="${item.id}">
+						<i class="fa fa-edit"></i>
+					</button>
+					
+					<button type="button" class="btn btn-xs btn-danger btn-delete" th:value="${item.id}">
+						<i class="fa fa-trash"></i>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</html>
